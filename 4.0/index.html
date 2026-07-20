@@ -89,10 +89,14 @@
         document.getElementById("time_ago").innerHTML = `<b>${Math.floor(seconds_delta / 3600.0 / 10) / 100.0}</b>`;
       }
 
-      // handle loading state by just hidding/showing #main
+      // handle loading state by just hiding/showing #main
       document.getElementById("main").removeAttribute("hidden");
     }
-    main()
+    main().catch(() => {
+      document.getElementById("main").innerHTML =
+        "Failed to fetch block data. Please try again later.";
+      document.getElementById("main").removeAttribute("hidden");
+    })
   </script>
 </body>
 
